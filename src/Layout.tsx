@@ -1,14 +1,15 @@
-import { AppShell, Burger, NavLink as MantineNavLink, Stack } from '@mantine/core';
+import { AppShell, Burger, NavLink as MantineNavLink, Stack, Image } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconFileDescription, IconUsers } from '@tabler/icons-react';
-import { Link, Outlet, NavLink as RouterNavLink } from 'react-router-dom';
+import { Outlet, NavLink as RouterNavLink } from 'react-router-dom';
+import logo from "./assets/IUTCM.png"
 
 function Demo() {
     const [opened, { toggle }] = useDisclosure();
 
     return (
         <AppShell
-            header={{ height: 60 }}
+            header={{ height: 80 }}
             navbar={{
                 width: 300,
                 breakpoint: 'sm',
@@ -16,23 +17,23 @@ function Demo() {
             }}
             padding="md"
         >
-            <AppShell.Header>
+            <AppShell.Header p={"md"}>
                 <Burger
                     opened={opened}
                     onClick={toggle}
                     hiddenFrom="sm"
                     size="sm"
                 />
-                <div>Logo</div>
+                <Image src={logo} w={128} />
             </AppShell.Header>
 
             <AppShell.Navbar p="md">
                 <Stack>
 
-                    <RouterNavLink to="/">
+                    <RouterNavLink to="/" style={{ textDecoration: "none" }}>
                         {({ isActive }) => (
                             <MantineNavLink
-                                td="none"
+                                c={isActive ? "blue" : "black"}
                                 active={isActive}
                                 label="Estudiantes"
                                 leftSection={<IconUsers size="1rem" stroke={1.5} />}
@@ -40,12 +41,13 @@ function Demo() {
                         )}
                     </RouterNavLink>
 
-                    <RouterNavLink to="/files">
+                    <RouterNavLink to="/files" style={{ textDecoration: "none" }}>
                         {({ isActive }) => (
                             <MantineNavLink
+                                c={isActive ? "blue" : "black"}
                                 active={isActive}
                                 label="Files"
-                                leftSection={<IconUsers size="1rem" stroke={1.5} />}
+                                leftSection={<IconFileDescription size="1rem" stroke={1.5} />}
                             />
                         )}
                     </RouterNavLink>
